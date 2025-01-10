@@ -1,0 +1,16 @@
+venv/
+
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Ignore Tesseract binaries
+*.exe
+*.dll
+
+models/*.keras
