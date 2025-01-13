@@ -17,5 +17,5 @@ dist/
 # CNN model
 models/*.keras
 
-#Frontend dependencies
+# Frontend dependencies
 /frontend/node_modules
