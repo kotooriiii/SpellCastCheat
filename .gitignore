@@ -1,3 +1,4 @@
+# Python env
 venv/
 
 # IntelliJ IDEA specific files
@@ -9,8 +10,12 @@ build/
 dist/
 *.egg-info/
 
-# Ignore Tesseract binaries
+# Ignore binaries
 *.exe
 *.dll
 
+# CNN model
 models/*.keras
+
+#Frontend dependencies
+/frontend/node_modules
