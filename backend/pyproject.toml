@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spellcast_cheat"
+version = "0.1"
+description = "Find words based on a spellcast table. Screenshot, upload, and find the best words!"
+authors = [{ name = "Carlos Miranda" }]
+dependencies = [
+    "opencv-python",            # OpenCV for image processing
+    "tensorflow>=2.10.0",       # Adjust the version based on your system
+    "numpy>=1.22.0",            # Required for TensorFlow operations
+    "pandas>=2.0.3",            # Read dictionary
+    "fastapi>=0.100.0",         # API
+    "uvicorn>=0.22.0",          # Server
+    "pillow>=9.0.0",            # Read image data
+    "pydantic>=1.10.0",         # data validation
+    "python-multipart>=0.0.5"   # file for api
+]
+requires-python = ">=3.12"
