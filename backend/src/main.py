@@ -1,11 +1,24 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, APIRouter
+
 from typing import List, Dict
 from io import BytesIO
 from PIL import Image
 from pydantic import BaseModel
 from typing import Tuple
 
+from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware  # Turns out it doesn't matter where you import this from
+
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
 # Tile Pydantic model for serialization

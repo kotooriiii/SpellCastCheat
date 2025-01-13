@@ -12,7 +12,7 @@ const apiClient = axios.create(apiClientConfig);
 
 apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) =>
 {
-    config.baseURL = config.baseURL + "/api/v1";
+    config.baseURL = config.baseURL + "";
     return config;
 });
 
