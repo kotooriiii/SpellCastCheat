@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 
 import App from "./app/App.tsx";
-
+import './styles/index.pcss'
 import '@fontsource/inter/100.css'
 import '@fontsource/inter/200.css'
 import '@fontsource/inter/300.css'
