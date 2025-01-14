@@ -1,16 +1,19 @@
+import os
+
 import cv2
 import numpy as np
 
 
-def extract_grid_nodes(image):
+def extract_grid_nodes(image, should_write_to_io=False):
     # Convert the Pillow Image to a NumPy array
     image_np = np.array(image)
 
     # If the image is in RGBA or RGB mode, convert it to BGR for OpenCV
-    if image.mode in ("RGBA", "RGB"):
-        image_np = cv2.cvtColor(image_np, cv2.COLOR_RGB2BGR)
-    elif image.mode == "L":  # Grayscale
-        pass  # No conversion needed for grayscale
+    if hasattr(image, 'mode'):
+        if image.mode in ("RGBA", "RGB"):
+            image_np = cv2.cvtColor(image_np, cv2.COLOR_RGB2BGR)
+        elif image.mode == "L":  # Grayscale
+            pass  # No conversion needed for grayscale
 
     # Convert to grayscale
     gray = cv2.cvtColor(image_np, cv2.COLOR_BGR2GRAY)
@@ -85,7 +88,13 @@ def extract_grid_nodes(image):
 
             nodes.append(node)
             # Save the node image (optional)
-            # cv2.imwrite(f'node_{len(nodes)}.png', node)
+            if should_write_to_io:
+                # Define the path
+                output_dir = "../../dataset/to_label"
+                os.makedirs(output_dir, exist_ok=True)  # Create the folder if it doesn't exist
+
+                cv2.imwrite(f"{output_dir}/node_{len(nodes)}.png", node)
+
 
     return nodes
 

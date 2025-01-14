@@ -35,7 +35,7 @@ def rename_images_in_subdirs(root_dir):
 
 
 # Specify the root directory to start renaming
-root_directory = "../../../dataset"
+root_directory = "../../../dataset/train_and_test"
 
 # Call the function
 rename_images_in_subdirs(root_directory)
