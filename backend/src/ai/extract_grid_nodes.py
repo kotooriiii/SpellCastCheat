@@ -1,12 +1,19 @@
 import cv2
 import numpy as np
 
-def extract_grid_nodes(image_path):
-    # Load the image
-    image = cv2.imread(image_path)
+
+def extract_grid_nodes(image):
+    # Convert the Pillow Image to a NumPy array
+    image_np = np.array(image)
+
+    # If the image is in RGBA or RGB mode, convert it to BGR for OpenCV
+    if image.mode in ("RGBA", "RGB"):
+        image_np = cv2.cvtColor(image_np, cv2.COLOR_RGB2BGR)
+    elif image.mode == "L":  # Grayscale
+        pass  # No conversion needed for grayscale
 
     # Convert to grayscale
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(image_np, cv2.COLOR_BGR2GRAY)
 
     # Apply thresholding to make the grid more distinguishable
     _, thresh = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
@@ -70,18 +77,16 @@ def extract_grid_nodes(image_path):
             # Apply padding
             x1 = max(x - cell_padding, 0)
             y1 = max(y - cell_padding, 0)
-            x2 = min(x + w + cell_padding, image.shape[1])
-            y2 = min(y + h + cell_padding, image.shape[0])
+            x2 = min(x + w + cell_padding, image_np.shape[1])
+            y2 = min(y + h + cell_padding, image_np.shape[0])
 
             # Crop the node
-            node = image[y1:y2, x1:x2]
+            node = image_np[y1:y2, x1:x2]
 
             nodes.append(node)
             # Save the node image (optional)
             # cv2.imwrite(f'node_{len(nodes)}.png', node)
 
-    # Print the number of extracted nodes
-    print(f'Extracted {len(nodes)} nodes.')
     return nodes
 
 

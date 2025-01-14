@@ -13,7 +13,7 @@ class WordState:
         self.__total_cost += tile.get_number()
         self.__double_point_active = self.__double_point_active or tile.is_double_point()
 
-    def calculate_total_cost(self):
+    def get_total_cost(self):
         """Calculate the total cost with double point multiplier."""
         return self.__total_cost * 2 if self.__double_point_active else self.__total_cost
 
@@ -22,3 +22,10 @@ class WordState:
 
     def get_path(self):
         return self.__path
+
+    def __lt__(self, other):
+        # Define comparison for heap operations
+        return self.__total_cost < other.get_total_cost()
+
+    def __repr__(self):
+        return f"WordEntry(total_cost={self.__total_cost}, current_word={self.__current_word}, path={self.__path})"

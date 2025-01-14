@@ -44,6 +44,9 @@ class Table:
     def get_cols(self):
         return self.__cols
 
+    def get_grid(self):
+        return self.__grid
+
     def visualize(self):
         """Visualize the grid."""
         for row in self.__grid:

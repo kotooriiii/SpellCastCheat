@@ -14,7 +14,7 @@ dist/
 *.exe
 *.dll
 
-# CNN model
+# CNN business_model
 models/*.keras
 
 # Frontend dependencies
